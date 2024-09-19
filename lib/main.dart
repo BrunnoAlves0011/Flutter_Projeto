@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'view/login.dart';
 import 'view/cadastro.dart';
 //import 'view/Reset.dart';
-//import 'view/Cardapio.view.art';
+import 'view/cardapio.dart';
 
 void main() {
   runApp(DevicePreview(
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
           'Login': (context) => LoginView(),
           'Cadastro': (context) => CadastroView(),
           //'Reset': (context) => ResetView(),
-          //'Cardapio': (context) => CardapioView(),
+          'Cardapio': (context) => CardapioView(),
           //'principal' : (context) => PrincipalView(),
           //'detalhes' : (context) => DetalhesView(),
         });
