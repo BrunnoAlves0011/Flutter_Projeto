@@ -63,13 +63,8 @@ class _LoginViewState extends State<LoginView> {
                           });
                         },
                       )),
-                  obscureText: _showPassword == false ? true : false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Informe uma senha';
-                    }
-                    return null;
-                  }),
+                  obscureText: _showPassword == false ? true : false
+                  ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
