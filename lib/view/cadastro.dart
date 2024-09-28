@@ -39,13 +39,14 @@ class _CadastroViewState extends State<CadastroView> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 120, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: Form(
           key: formkey,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Image.asset('lib/images/pizza.png'),
               TextFormField(
                   controller: txtValor1,
                   decoration: InputDecoration(

@@ -114,29 +114,29 @@ class MenuPizzaDoce {
   final String nome;
   final String desc;
   final String valor;
-  final foto;
+  final String image;
 
-  MenuPizzaDoce(this.nome, this.desc, this.valor, this.foto);
+  MenuPizzaDoce(this.nome, this.desc, this.valor, this.image);
 
   static List<MenuPizzaDoce> gerarDados() {
     List<MenuPizzaDoce> list = [];
 
     list.add(MenuPizzaDoce('Abacaxi',
-        'Massa de pizza, abacaxi, chocolate branco', 'RS32,00', AssetImage('lib/images/abacaxi.jpg')));
+        'Massa de pizza, abacaxi, chocolate branco', 'RS32,00', 'lib/images/abacaxi.jpg'));
     list.add(MenuPizzaDoce('Banana com Canela',
-        'Massa de pizza, banana, açúcar, canela', 'RS28,00', AssetImage('lib/images/abacaxi_canela.jpg')));
+        'Massa de pizza, banana, açúcar, canela', 'RS28,00', 'lib/images/abacaxi_canela.jpg'));
     list.add(MenuPizzaDoce('Frutas Vermelhas',
-        'Massa de pizza, frutas vermelhas, chantilly', 'RS38,00', AssetImage('lib/images/frutas_vermelhas.jpg')));
+        'Massa de pizza, frutas vermelhas, chantilly', 'RS38,00', 'lib/images/frutas_vermelhas.jpg'));
     list.add(MenuPizzaDoce(
-        'M&Ms', 'Massa de pizza, chocolate derretido, M&Ms', 'RS34,00', AssetImage('lib/images/mem.jpg')));
+        'M&Ms', 'Massa de pizza, chocolate derretido, M&Ms', 'RS34,00', 'lib/images/mem.jpg'));
     list.add(MenuPizzaDoce('Morango com Chocolate',
-        'Massa de pizza, morango, chocolate derretido', 'RS35,00', AssetImage('lib/images/morango.jpg')));
+        'Massa de pizza, morango, chocolate derretido', 'RS35,00', 'lib/images/morango.jpg'));
     list.add(MenuPizzaDoce(
-        'Nutella', 'Massa de pizza, Nutella, morango', 'RS38,00', AssetImage('lib/images/nuttela.jpg')));
+        'Nutella', 'Massa de pizza, Nutella, morango', 'RS38,00', 'lib/images/nuttela.jpg'));
     list.add(MenuPizzaDoce('Oreo',
-        'Massa de pizza, creme de Oreo, pedaços de Oreo', 'RS35,00', AssetImage('lib/images/oreo.jpg')));
+        'Massa de pizza, creme de Oreo, pedaços de Oreo', 'RS35,00', 'lib/images/oreo.jpg'));
     list.add(MenuPizzaDoce(
-        'Romeu e Julieta', 'Massa de pizza, goiabada, queijo', 'RS30,00', AssetImage('lib/images/romeu.jpg')));
+        'Romeu e Julieta', 'Massa de pizza, goiabada, queijo', 'RS30,00', 'lib/images/romeu.jpg'));
     return list;
   }
 }

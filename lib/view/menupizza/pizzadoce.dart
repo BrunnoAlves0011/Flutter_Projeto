@@ -19,7 +19,7 @@ class _PizzadoceState extends State<Pizzadoce> {
 
   @override
   void initState() {
-    lista = MenuPizzaSal.gerarDados();
+    lista = MenuPizzaDoce.gerarDados();
     super.initState();
   }
 
