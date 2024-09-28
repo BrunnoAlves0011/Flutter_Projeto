@@ -10,6 +10,9 @@ import 'view/login.dart';
 import 'view/cadastro.dart';
 //import 'view/Reset.dart';
 import 'view/cardapio.dart';
+import 'view/menupizza/pizzasal.dart';
+import 'view/menupizza/pizzadoce.dart';
+import 'view/menupizza/bebida.dart';
 
 final getIt = GetIt.instance;
 
@@ -38,7 +41,9 @@ class MainApp extends StatelessWidget {
           //'Reset': (context) => ResetView(),
           'Cardapio': (context) => CardapioView(),
           //'principal' : (context) => PrincipalView(),
-          //'detalhes' : (context) => DetalhesView(),
+          'PizzaSal' : (context) => Pizzasal(),
+          'PizzaDoce' : (context) => Pizzadoce(),
+          //'Bebida' : (context) => Bebida(),
         });
   }
 }
