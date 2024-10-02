@@ -66,6 +66,8 @@ class _PizzasalState extends State<Pizzasal> {
                 hoverColor: Colors.red.shade100,
                 shape: Border.symmetric(horizontal: BorderSide(color: Colors.black), vertical: BorderSide(color: Colors.black)),
                 onTap: () {
+                  MenuPizzaSal dados = lista[index];
+                  Navigator.pushNamed(context, 'Detalhes', arguments: dados);
                   //retornar o item da lista selecionado
                   //Menu dados = lista[index];
                 },

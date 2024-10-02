@@ -9,6 +9,7 @@ import 'model/carrinho.dart';
 import 'view/login.dart';
 import 'view/cadastro.dart';
 //import 'view/Reset.dart';
+import 'view/detalhes.dart';
 import 'view/cardapio.dart';
 import 'view/menupizza/pizzasal.dart';
 import 'view/menupizza/pizzadoce.dart';
@@ -40,7 +41,7 @@ class MainApp extends StatelessWidget {
           'Cadastro': (context) => CadastroView(),
           //'Reset': (context) => ResetView(),
           'Cardapio': (context) => CardapioView(),
-          //'principal' : (context) => PrincipalView(),
+          'Detalhes' : (context) => DetalhesView(),
           'PizzaSal' : (context) => Pizzasal(),
           'PizzaDoce' : (context) => Pizzadoce(),
           //'Bebida' : (context) => Bebida(),
