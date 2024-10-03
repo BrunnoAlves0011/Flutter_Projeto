@@ -70,7 +70,7 @@ class _CardapioViewState extends State<CardapioView> {
                   }else if(dados.nome == "Pizzas Doces"){
                     Navigator.pushNamed(context, 'PizzaDoce');
                   }else if(dados.nome == "Bebidas"){
-                    Navigator.pushNamed(context, "Bebidas");
+                    Navigator.pushNamed(context, "Bebida");
                   }else{
                     //Navigator.pushNamed(context, "Carrinho");
                   }

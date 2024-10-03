@@ -44,7 +44,8 @@ class MainApp extends StatelessWidget {
           'Detalhes' : (context) => DetalhesView(),
           'PizzaSal' : (context) => Pizzasal(),
           'PizzaDoce' : (context) => Pizzadoce(),
-          //'Bebida' : (context) => Bebida(),
+          'Bebida' : (context) => Bebida(),
+          //'Carrinho' : (context) => Carrinho(),
         });
   }
 }
