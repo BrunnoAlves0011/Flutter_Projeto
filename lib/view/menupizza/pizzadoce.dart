@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import '/model/menu.dart';
@@ -27,15 +26,12 @@ class _PizzadoceState extends State<Pizzadoce> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Pizzas Doces'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: (){
-              Navigator.pushNamedAndRemoveUntil(context, 'Cardapio', (Route<dynamic> route) => false);
-            }, 
-            icon: Icon(Icons.logout))
-        ],
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.orangeAccent,
+        child: const Icon(Icons.local_grocery_store_sharp),
+      ),
       body: Padding(
         padding: EdgeInsets.all(30),
         child: ListView.builder(
@@ -45,7 +41,7 @@ class _PizzadoceState extends State<Pizzadoce> {
               child: ListTile(
                 title: Text(lista[index].nome, style: TextStyle(fontSize: 22)),
                 subtitle: Text(
-                  lista[index].desc,  
+                  lista[index].desc,
                   style: TextStyle(
                     fontSize: 14,
                     fontStyle: FontStyle.italic,
@@ -59,8 +55,8 @@ class _PizzadoceState extends State<Pizzadoce> {
                 trailing: Icon(Icons.arrow_right),
                 hoverColor: Colors.red.shade100,
                 onTap: () {
-                  //retornar o item da lista selecionado
-                  //Menu dados = lista[index];
+                  //MenuPizzaDoce dados = lista[index];
+                  //Navigator.pushNamed(context, 'Detalhes', arguments: dados);
                 },
               ),
             );

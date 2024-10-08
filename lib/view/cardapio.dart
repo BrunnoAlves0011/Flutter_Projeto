@@ -27,52 +27,53 @@ class _CardapioViewState extends State<CardapioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cardarpio'),
+        title: Text('Cardapio'),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: (){
-              Navigator.pushNamedAndRemoveUntil(context, 'Login', (Route<dynamic> route) => false);
-            }, 
-            icon: Icon(Icons.logout))
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, 'Login', (Route<dynamic> route) => false);
+              },
+              icon: Icon(Icons.logout))
         ],
-        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.orangeAccent,
+        child: const Icon(Icons.local_grocery_store_sharp),
+      ),
       body: Padding(
         padding: EdgeInsets.all(30),
-        child: ListView.builder(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+          ),
           itemCount: lista.length,
           itemBuilder: (contexto, index) {
             return Card(
-              child: ListTile(
-                title: Text(
-                  lista[index].nome,
-                  style: TextStyle(fontSize: 22),
+              child: InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(lista[index].image,
+                        width: 300, fit: BoxFit.fill),
+                    Text(
+                      lista[index].nome,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
                 ),
-                subtitle: Text(
-                  lista[index].desc,  
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-                leading: Container(
-                  height: 50,
-                  width: 50,
-                ),
-                trailing: Icon(Icons.arrow_right),
-                hoverColor: Colors.red.shade100,
                 onTap: () {
-                  //retornar o item da lista selecionado
-
-                  Menu dados = lista[index];
-                  if(dados.nome == "Pizzas Salgadas"){
+                  if (lista[index].nome == 'Pizzas Salgadas') {
                     Navigator.pushNamed(context, 'PizzaSal');
-                  }else if(dados.nome == "Pizzas Doces"){
+                  } else if (lista[index].nome == 'Pizzas Doces') {
                     Navigator.pushNamed(context, 'PizzaDoce');
-                  }else if(dados.nome == "Bebidas"){
-                    Navigator.pushNamed(context, "Bebida");
-                  }else{
-                    //Navigator.pushNamed(context, "Carrinho");
+                  } else {
+                    Navigator.pushNamed(context, 'Bebida');
                   }
                 },
               ),

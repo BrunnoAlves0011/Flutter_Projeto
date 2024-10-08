@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import '/model/menu.dart';
@@ -26,50 +25,42 @@ class _PizzasalState extends State<Pizzasal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pizzas Salgadas'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            onPressed: (){
-              Navigator.pushNamedAndRemoveUntil(context, 'Cardapio', (Route<dynamic> route) => false);
-            }, 
-            icon: Icon(Icons.logout))
-        ],
-        ),
+        title: Text('Pizza Salgada'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.orangeAccent,
+        child: const Icon(Icons.local_grocery_store_sharp),
+      ),
       body: Padding(
         padding: EdgeInsets.all(30),
-        child: ListView.builder(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            mainAxisExtent: 300,
+            //crossAxisSpacing: 10,
+            //mainAxisSpacing: 10,
+          ),
           itemCount: lista.length,
           itemBuilder: (contexto, index) {
             return Card(
-              child: ListTile(
-                title: Text(lista[index].nome, style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              child: InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    Image.asset(lista[index].image,
+                        width: 250, fit: BoxFit.scaleDown),
                     Text(
-                      lista[index].desc,  
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontStyle: FontStyle.italic,
-                      ),
+                      lista[index].nome,
+                      style: TextStyle(fontSize: 18),
                     ),
                   ],
                 ),
-                leading: Container(
-                  margin: EdgeInsets.only(top: 8),
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(lista[index].image),
-                ),
-                trailing: Icon(Icons.arrow_right),
-                hoverColor: Colors.red.shade100,
-                shape: Border.symmetric(horizontal: BorderSide(color: Colors.black), vertical: BorderSide(color: Colors.black)),
                 onTap: () {
                   MenuPizzaSal dados = lista[index];
+                  x = 1;
                   Navigator.pushNamed(context, 'Detalhes', arguments: dados);
-                  //retornar o item da lista selecionado
-                  //Menu dados = lista[index];
                 },
               ),
             );

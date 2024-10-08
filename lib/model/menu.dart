@@ -1,19 +1,20 @@
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
+int x = 0;
 
-class Menu {
+class Menu{
   final String nome;
   final String desc;
-  final foto;
+  final String image;
 
-  Menu(this.nome, this.desc, this.foto);
+  Menu(this.nome, this.desc, this.image);
 
   static List<Menu> gerarDados() {
     List<Menu> list = [];
-    list.add(Menu("Pizzas Salgadas", "Pizza saborosa", "Foto1"));
-    list.add(Menu("Pizzas Doces", "Docinho", "Foto1"));
-    list.add(Menu("Bebidas", "Hidrate-se", "Foto1"));
+    list.add(Menu("Pizzas Salgadas", "Pizza saborosa", "lib/images/ptela.jpg"));
+    list.add(Menu("Pizzas Doces", "Docinho", "lib/images/pdoce.jpg"));
+    list.add(Menu("Bebidas", "Hidrate-se", "lib/images/bebida.jpeg"));
 
     return list;
   }
@@ -55,7 +56,7 @@ class MenuPizzaSal {
     List<MenuPizzaSal> list = [];
 
     list.add(MenuPizzaSal('Alho-Poró com Bacon',
-        'Alho-Poró,Bacon,Cebola,Mussarela,Tomate Seco', '29.90', 'lib/images/alho.jpg'));
+        'Alho-Poró,Bacon,Cebola,Mussarela,Tomate Seco', '29.90', 'lib/images/alho.jpeg'));
     list.add(MenuPizzaSal(
         'Calabresa', 'Linguiça Calabresa,Tomate,Mussarela', '29.90', 'lib/images/calabresa.jpg'));
     list.add(MenuPizzaSal(
@@ -66,7 +67,7 @@ class MenuPizzaSal {
         '43,00',
         'lib/images/baiana.jpg'));
     list.add(MenuPizzaSal(
-        'Escarola', 'Molho de tomate, mussarela, escarola', '34,00', 'lib/images/mato.jpg'));
+        'Escarola', 'Molho de tomate, mussarela, escarola', '34,00', 'lib/images/mato.png'));
     list.add(MenuPizzaSal(
         'Frango com Catupiry',
         'Molho de tomate, mussarela, frango desfiado, catupiry',
@@ -82,7 +83,7 @@ class MenuPizzaSal {
         '42,00',
         'lib/images/mexico.jpg'));
     list.add(MenuPizzaSal(
-        'Milho', 'Molho de tomate, mussarela, milho', '32,00', 'lib/images/milho.jpg'));
+        'Milho', 'Molho de tomate, mussarela, milho', '32,00', 'lib/images/milho.jpeg'));
     list.add(MenuPizzaSal('Napolitana',
         'Molho de tomate, mussarela, tomate, alho, orégano', '32,00', 'lib/images/napolitana.jpg'));
     list.add(MenuPizzaSal(
@@ -91,7 +92,7 @@ class MenuPizzaSal {
         'Paulista',
         'Molho de tomate, mussarela, presunto, ovo, cebola, azeitona',
         '38,00',
-        'lib/images/Paulista.jpg'));
+        'lib/images/Paulista.jpeg'));
     list.add(MenuPizzaSal(
         'Pepperoni', 'Molho de tomate, mussarela, pepperoni', '35,00', 'lib/images/Pepperoni.jpg'));
     list.add(MenuPizzaSal(

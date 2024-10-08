@@ -17,7 +17,8 @@ class _DetalhesViewState extends State<DetalhesView> {
     //
     // Receber os dados que foram enviados por argumento
     // ( *^-^)ρ(^0^* )
-    final MenuPizzaSal dados = ModalRoute.of(context)!.settings.arguments as MenuPizzaSal;
+    //
+    final MenuPizzaSal dados = ModalRoute.of(context)!.settings.arguments as MenuPizzaSal;    
     return Scaffold(
       appBar: AppBar(
         title: Text(dados.nome),
@@ -38,24 +39,25 @@ class _DetalhesViewState extends State<DetalhesView> {
             ListTile(
               title: Text(
                 'Ingredientes',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
                 dados.desc,
-                style: TextStyle(fontSize: 18)),
+                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
             ),
             ListTile(
               title: Text(
                 'Preço',
-                style: TextStyle(fontSize: 24),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
                 dados.valor,
                 style: TextStyle(fontSize: 20),
               ),
             ),
+            //SizedBox(height: 50),
             ListTile(
-              //title: Text('Adicionar ao carrinho', style: TextStyle(fontSize: 18)),
+              //title: Text('Comprar', style: TextStyle(fontSize: 18)),
               subtitle: Icon(Icons.local_grocery_store, size: 40),
             )
           ],

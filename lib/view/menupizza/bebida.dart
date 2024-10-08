@@ -26,21 +26,19 @@ class _BebidaState extends State<Bebida> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bebidas'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, 'Cardapio', (Route<dynamic> route) => false);
-              },
-              icon: Icon(Icons.logout))
-        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: Colors.orangeAccent,
+        child: const Icon(Icons.local_grocery_store_sharp),
       ),
       body: Padding(
         padding: EdgeInsets.all(30),
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 1,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
           ),
           itemCount: lista.length,
           itemBuilder: (contexto, index) {
@@ -49,14 +47,18 @@ class _BebidaState extends State<Bebida> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(lista[index].image, width: 120, fit: BoxFit.fill),
+                    Image.asset(lista[index].image,
+                        width: 250, fit: BoxFit.fill),
                     Text(
                       lista[index].nome,
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
                 ),
-                onTap: () {},
+                onTap: () {
+                  //MenuPizzaDoce dados = lista[index];
+                  //Navigator.pushNamed(context, 'Detalhes', arguments: dados);                  
+                },
               ),
             );
           },
