@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
+import 'package:get_it/get_it.dart';
+import '/model/carrinho.dart';
+import '/model/carrinhoservice.dart';
 import '/model/menu.dart';
+
+final CarrinhoService srv = GetIt.instance<CarrinhoService>();
 
 class DetalhesView extends StatefulWidget {
   const DetalhesView({super.key});
@@ -12,13 +17,19 @@ class DetalhesView extends StatefulWidget {
 }
 
 class _DetalhesViewState extends State<DetalhesView> {
+  final GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final messagerKey = GlobalKey<ScaffoldMessengerState>();
+
+  var lista = [];
+
   @override
   Widget build(BuildContext context) {
     //
     // Receber os dados que foram enviados por argumento
     // ( *^-^)ρ(^0^* )
     //
-    final MenuPizzaSal dados = ModalRoute.of(context)!.settings.arguments as MenuPizzaSal;    
+    final MenuPizzaSal dados =
+        ModalRoute.of(context)!.settings.arguments as MenuPizzaSal;
     return Scaffold(
       appBar: AppBar(
         title: Text(dados.nome),
@@ -26,6 +37,7 @@ class _DetalhesViewState extends State<DetalhesView> {
       body: Padding(
         padding: EdgeInsets.all(10),
         child: ListView(
+          key: formkey,
           children: [
             ImageNetwork(
                 image: dados.image,
@@ -41,9 +53,8 @@ class _DetalhesViewState extends State<DetalhesView> {
                 'Ingredientes',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
-              subtitle: Text(
-                dados.desc,
-                style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
+              subtitle: Text(dados.desc,
+                  style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic)),
             ),
             ListTile(
               title: Text(
@@ -51,15 +62,26 @@ class _DetalhesViewState extends State<DetalhesView> {
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
               subtitle: Text(
-                dados.valor,
+                dados.valor.toString(),
                 style: TextStyle(fontSize: 20),
               ),
             ),
             //SizedBox(height: 50),
-            ListTile(
-              //title: Text('Comprar', style: TextStyle(fontSize: 18)),
-              subtitle: Icon(Icons.local_grocery_store, size: 40),
-            )
+            TextButton(
+              style: TextButton.styleFrom(
+                //minimumSize: Size(40, 10),
+                textStyle: TextStyle(fontSize: 16),
+              ),
+              onPressed: () {
+                //Carrinho.adicionarPizza(dados.nome, dados.valor);
+                srv.adicionarPizza(Carrinho(dados.nome, dados.desc), dados.valor);
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Adicionado a sacola')),
+                );
+              },
+              child: Icon(Icons.local_grocery_store_sharp,
+                  size: 45, color: Colors.black),
+            ),
           ],
         ),
       ),

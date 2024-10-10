@@ -5,16 +5,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_projeto1/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import 'model/carrinho.dart';
+import 'model/carrinhoservice.dart';
 
 //Import Telas flutter
 import 'view/login.dart';
 import 'view/cadastro.dart';
-//import 'view/Reset.dart';
+import 'view/reset.dart';
 import 'view/detalhes.dart';
 import 'view/cardapio.dart';
 import 'view/menupizza/pizzasal.dart';
 import 'view/menupizza/pizzadoce.dart';
 import 'view/menupizza/bebida.dart';
+import 'view/carrinhoView.dart';
 
 final getIt = GetIt.instance;
 
@@ -38,15 +40,15 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: 'Login',
         routes: {
-          'Login': (context) => LoginView(),
-          'Cadastro': (context) => CadastroView(),
-          //'Reset': (context) => ResetView(),
-          'Cardapio': (context) => CardapioView(),
+          'Login'    : (context) => LoginView(),
+          'Cadastro' : (context) => CadastroView(),
+          'Reset'    : (context) => ResetView(),
+          'Cardapio' : (context) => CardapioView(),
           'Detalhes' : (context) => DetalhesView(),
           'PizzaSal' : (context) => Pizzasal(),
-          'PizzaDoce' : (context) => Pizzadoce(),
-          'Bebida' : (context) => Bebida(),
-          //'Carrinho' : (context) => Carrinho(),
+          'PizzaDoce': (context) => Pizzadoce(),
+          'Bebida'   : (context) => Bebida(),
+          'Carrinho' : (context) => CarrinhoView(),
         });
   }
 }

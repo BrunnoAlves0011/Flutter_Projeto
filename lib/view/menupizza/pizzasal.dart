@@ -4,7 +4,7 @@ import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
 
-final CarrinhoService srv = GetIt.instance<CarrinhoService>();
+final Carrinho srv = GetIt.instance<Carrinho>();
 
 class Pizzasal extends StatefulWidget {
   const Pizzasal({super.key});
@@ -28,7 +28,9 @@ class _PizzasalState extends State<Pizzasal> {
         title: Text('Pizza Salgada'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'Carrinho');
+        },
         backgroundColor: Colors.orangeAccent,
         child: const Icon(Icons.local_grocery_store_sharp),
       ),
@@ -59,7 +61,6 @@ class _PizzasalState extends State<Pizzasal> {
                 ),
                 onTap: () {
                   MenuPizzaSal dados = lista[index];
-                  x = 1;
                   Navigator.pushNamed(context, 'Detalhes', arguments: dados);
                 },
               ),

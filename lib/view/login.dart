@@ -63,8 +63,7 @@ class _LoginViewState extends State<LoginView> {
                           });
                         },
                       )),
-                  obscureText: _showPassword == false ? true : false
-                  ),
+                  obscureText: _showPassword == false ? true : false),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -93,6 +92,18 @@ class _LoginViewState extends State<LoginView> {
                   if (formkey.currentState!.validate()) {}
                 },
                 child: Text('Registrar-se'),
+              ),
+              SizedBox(height: 10),
+              TextButton(
+                style: TextButton.styleFrom(
+                  minimumSize: Size(30, 30),
+                  textStyle: TextStyle(fontSize: 16),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, 'Reset');
+                  if (formkey.currentState!.validate()) {}
+                },
+                child: Text('Esqueceu a senha?'),
               ),
             ],
           ),

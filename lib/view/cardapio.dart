@@ -6,7 +6,7 @@ import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
 
-final CarrinhoService srv = GetIt.instance<CarrinhoService>();
+final Carrinho srv = GetIt.instance<Carrinho>();
 
 class CardapioView extends StatefulWidget {
   const CardapioView({super.key});
@@ -39,7 +39,9 @@ class _CardapioViewState extends State<CardapioView> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'Carrinho');
+        },
         backgroundColor: Colors.orangeAccent,
         child: const Icon(Icons.local_grocery_store_sharp),
       ),

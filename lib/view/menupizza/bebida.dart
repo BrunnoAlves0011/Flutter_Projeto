@@ -4,7 +4,7 @@ import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
 
-final CarrinhoService srv = GetIt.instance<CarrinhoService>();
+final Carrinho srv = GetIt.instance<Carrinho>();
 
 class Bebida extends StatefulWidget {
   const Bebida({super.key});

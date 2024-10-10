@@ -2,42 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
-import '/model/carrinho.dart';
+import '/model/carrinhoservice.dart';
 
 final Carrinho srv = GetIt.instance<Carrinho>();
 
-class Pizzadoce extends StatefulWidget {
-  const Pizzadoce({super.key});
+class CarrinhoView extends StatefulWidget {
+  const CarrinhoView({super.key});
 
   @override
-  State<Pizzadoce> createState() => _PizzadoceState();
+  State<CarrinhoView> createState() => _CarrinhoViewState();
 }
 
-class _PizzadoceState extends State<Pizzadoce> {
+class _CarrinhoViewState extends State<CarrinhoView> {
   var lista = [];
 
   @override
-  void initState() {
-    lista = MenuPizzaDoce.gerarDados();
-    super.initState();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pizzas Doces'),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, 'Carrinho');
-        },
-        backgroundColor: Colors.orangeAccent,
-        child: const Icon(Icons.local_grocery_store_sharp),
+        title: Text('Carrinho'),
       ),
       body: Padding(
         padding: EdgeInsets.all(30),
         child: ListView.builder(
-          itemCount: lista.length,
+          itemCount: srv.carrinhos.length,
           itemBuilder: (contexto, index) {
             return Card(
               child: ListTile(
@@ -56,10 +44,6 @@ class _PizzadoceState extends State<Pizzadoce> {
                 ),
                 trailing: Icon(Icons.arrow_right),
                 hoverColor: Colors.red.shade100,
-                onTap: () {
-                  //MenuPizzaDoce dados = lista[index];
-                  //Navigator.pushNamed(context, 'Detalhes', arguments: dados);
-                },
               ),
             );
           },
