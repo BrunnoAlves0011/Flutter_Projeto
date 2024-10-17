@@ -1,3 +1,3 @@
 # flutter_projeto1
 
-A new Flutter project.
+Projeto Aplicativo em Flutter, sendo um aplicativo desenvolvido em aula de Programação de Dispositivos Moveis na faculdade FATEC Ribeirão Preto.
