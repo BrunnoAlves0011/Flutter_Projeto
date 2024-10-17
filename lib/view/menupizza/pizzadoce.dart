@@ -25,7 +25,7 @@ class _PizzadoceState extends State<Pizzadoce> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pizzas Doces'),
+        title: Text('Pizza Doce'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -36,29 +36,32 @@ class _PizzadoceState extends State<Pizzadoce> {
       ),
       body: Padding(
         padding: EdgeInsets.all(30),
-        child: ListView.builder(
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 1,
+            mainAxisExtent: 300,
+            //crossAxisSpacing: 10,
+            //mainAxisSpacing: 10,
+          ),
           itemCount: lista.length,
           itemBuilder: (contexto, index) {
             return Card(
-              child: ListTile(
-                title: Text(lista[index].nome, style: TextStyle(fontSize: 22)),
-                subtitle: Text(
-                  lista[index].desc,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontStyle: FontStyle.italic,
-                  ),
+              child: InkWell(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Image.asset(lista[index].image,
+                        width: 250, fit: BoxFit.scaleDown),
+                    Text(
+                      lista[index].nome,
+                      style: TextStyle(fontSize: 18),
+                    ),
+                  ],
                 ),
-                leading: Container(
-                  height: 50,
-                  width: 50,
-                  child: Image.asset(lista[index].image),
-                ),
-                trailing: Icon(Icons.arrow_right),
-                hoverColor: Colors.red.shade100,
                 onTap: () {
-                  //MenuPizzaDoce dados = lista[index];
-                  //Navigator.pushNamed(context, 'Detalhes', arguments: dados);
+                  MenuPizzaDoce dados = lista[index];
+                  Navigator.pushNamed(context, 'DetalhesD', arguments: dados);
                 },
               ),
             );

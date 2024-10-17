@@ -59,70 +59,11 @@ class _ResetViewState extends State<ResetView> {
                       hintStyle: TextStyle(color: Colors.black38)),
                   validator: (value) {
                     //val = RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value);
-                    if (value == null || value.isEmpty) {
+                    if (value != 'jose@gmail.com') {
                       return 'Informe um email cadastrado';
-                    }else if(value.isNotEmpty){
-                      return 'ansfdnak';
+                    }else {
+                      return null;
                     }
-                    return null;
-                  }),
-              SizedBox(height: 20),
-              TextFormField(
-                  controller: txtValor3,
-                  decoration: InputDecoration(
-                      labelText: 'Senha',
-                      labelStyle: TextStyle(color: Colors.redAccent),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: '********',
-                      hintStyle: TextStyle(color: Colors.black38),
-                      suffixIcon: GestureDetector(
-                        child: Icon(
-                            _showPassword == false
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.white),
-                        onTap: () {
-                          setState(() {
-                            _showPassword = !_showPassword;
-                          });
-                        },
-                      )),
-                  obscureText: _showPassword == false ? true : false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Informe uma senha';
-                    }
-                    return null;
-                  }),
-              SizedBox(height: 20),
-              TextFormField(
-                  controller: txtvalor4,
-                  decoration: InputDecoration(
-                      labelText: 'Confirmar Senha',
-                      labelStyle: TextStyle(color: Colors.redAccent),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: '********',
-                      hintStyle: TextStyle(color: Colors.black38),
-                      suffixIcon: GestureDetector(
-                        child: Icon(
-                            _showPassword == false
-                                ? Icons.visibility_off
-                                : Icons.visibility,
-                            color: Colors.white),
-                        onTap: () {
-                          setState(() {
-                            _showPassword = !_showPassword;
-                          });
-                        },
-                      )),
-                  obscureText: _showPassword == false ? true : false,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Informe uma senha';
-                    }
-                    return null;
                   }),
               SizedBox(height: 20),
               ElevatedButton(
@@ -134,25 +75,15 @@ class _ResetViewState extends State<ResetView> {
                 ),
                 onPressed: () {
                   if (formkey.currentState!.validate()) {
-                    setState(() {
-                      double v1 = double.parse(txtValor3.text);
-                      double v2 = double.parse(txtvalor4.text);
-                      if (v1 != v2) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text('Senhas nao coincidem')),
-                        );
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                              content: Text('Senha Alterada com sucesso.',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                  ))),
-                        );
-                        Navigator.pushReplacementNamed(context, 'Login');
-                      }
-                    });
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                          content: Text('Email enviado com sucesso.',
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ))),
+                    );
+                    Navigator.pushReplacementNamed(context, 'Login');
                   }
                 },
                 child: Text('Redefinir Senha'),

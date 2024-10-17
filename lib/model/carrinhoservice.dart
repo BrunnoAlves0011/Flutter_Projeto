@@ -1,26 +1,28 @@
 import '/model/carrinho.dart';
 
-class CarrinhoService {
-  List<Carrinho> carrinhos = [];
+class Cart {
+  List<CartItem> items = [];
 
-  void adicionarPizza(Carrinho nome, double value) {
-    carrinhos.add(nome);
-    valor = valor + value;
+  void addItem(Carrinho product) {
+    // Verificar se o item já está no carrinho
+    CartItem? existingItem = items.firstWhere((item) => item.product.id == product.id, orElse: () => CartItem(product: product, quantity: 0));
+    
+    if (existingItem.quantity > 0) {
+      existingItem.quantity++;
+    } else {
+      items.add(CartItem(product: product, quantity: 1));
+    }
   }
 
-  void adicionarBebida(Carrinho bebida, double value) {
-    carrinhos.add(bebida);
-    valor = valor + value;
+  void removeItem(String productId) {
+    items.removeWhere((item) => item.product.id == productId);
   }
 
-  void removerPizza(index, double value) {
-    carrinhos.remove(index);
-    valor = valor - value;
+  double get totalAmount {
+    return items.fold(0.0, (sum, item) => sum + (item.product.valor * item.quantity));
   }
 
-  void removerBebida(index, double value){
-    carrinhos.add(index);
-    valor = valor - value;
+  int get itemCount {
+    return items.fold(0, (sum, item) => sum + item.quantity);
   }
-
 }

@@ -7,16 +7,17 @@ import '/model/carrinho.dart';
 import '/model/carrinhoservice.dart';
 import '/model/menu.dart';
 
-final CarrinhoService srv = GetIt.instance<CarrinhoService>();
+final Cart srv = GetIt.instance<Cart>();
 
-class DetalhesView extends StatefulWidget {
-  const DetalhesView({super.key});
+class DetalhesSView extends StatefulWidget {
+  const DetalhesSView({super.key});
 
   @override
-  State<DetalhesView> createState() => _DetalhesViewState();
+  State<DetalhesSView> createState() => _DetalhesSViewState();
 }
 
-class _DetalhesViewState extends State<DetalhesView> {
+class _DetalhesSViewState extends State<DetalhesSView> {
+  final Cart cart = Cart();
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -67,16 +68,22 @@ class _DetalhesViewState extends State<DetalhesView> {
               ),
             ),
             //SizedBox(height: 50),
-            TextButton(
-              style: TextButton.styleFrom(
-                //minimumSize: Size(40, 10),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                //minimumSize: Size(50, 60),
+                foregroundColor: Colors.white,
                 textStyle: TextStyle(fontSize: 16),
               ),
               onPressed: () {
-                //Carrinho.adicionarPizza(dados.nome, dados.valor);
-                srv.adicionarPizza(Carrinho(dados.nome, dados.desc), dados.valor);
+                //Carrinho newPizza = Carrinho(id: dados.id, image: dados.image, pizza: dados.nome, valor: dados.valor);
+                srv.addItem(Carrinho(
+                    id: dados.id,
+                    image: dados.image,
+                    pizza: dados.nome,
+                    valor: dados.valor));
+                //srv.adicionarPizza(Carrinho(dados.nome, dados.desc), dados.valor);
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Adicionado a sacola')),
+                  SnackBar(content: Text('Adicionado ao carrinho')),
                 );
               },
               child: Icon(Icons.local_grocery_store_sharp,

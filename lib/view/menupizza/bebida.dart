@@ -28,7 +28,9 @@ class _BebidaState extends State<Bebida> {
         title: Text('Bebidas'),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, 'Carrinho');
+        },
         backgroundColor: Colors.orangeAccent,
         child: const Icon(Icons.local_grocery_store_sharp),
       ),
@@ -56,8 +58,8 @@ class _BebidaState extends State<Bebida> {
                   ],
                 ),
                 onTap: () {
-                  //MenuPizzaDoce dados = lista[index];
-                  //Navigator.pushNamed(context, 'Detalhes', arguments: dados);                  
+                  MenuBebidas dados = lista[index];
+                  Navigator.pushNamed(context, 'DetalhesB', arguments: dados);                  
                 },
               ),
             );

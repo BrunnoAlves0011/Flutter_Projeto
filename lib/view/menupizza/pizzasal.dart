@@ -61,7 +61,7 @@ class _PizzasalState extends State<Pizzasal> {
                 ),
                 onTap: () {
                   MenuPizzaSal dados = lista[index];
-                  Navigator.pushNamed(context, 'Detalhes', arguments: dados);
+                  Navigator.pushNamed(context, 'DetalhesS', arguments: dados);
                 },
               ),
             );
