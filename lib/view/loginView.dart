@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import '../controller/login_controller.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -12,6 +13,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
+  final LoginController _loginController = LoginController();
 
   var txtValor1 = TextEditingController();
   var txtValor2 = TextEditingController();
@@ -73,9 +75,7 @@ class _LoginViewState extends State<LoginView> {
                   textStyle: TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    Navigator.pushNamed(context, 'Cardapio');
-                  }
+                  _loginController.login(context, txtValor1.text, txtValor2.text);
                 },
                 child: Text('Entrar na Conta'),
               ),

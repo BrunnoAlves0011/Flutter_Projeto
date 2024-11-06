@@ -5,6 +5,7 @@ import 'package:image_network/image_network.dart';
 import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
+import '../controller/login_controller.dart';
 
 final Carrinho srv = GetIt.instance<Carrinho>();
 
@@ -17,7 +18,6 @@ class CardapioView extends StatefulWidget {
 
 class _CardapioViewState extends State<CardapioView> {
   var lista = [];
-
   @override
   void initState() {
     lista = Menu.gerarDados();
@@ -27,16 +27,34 @@ class _CardapioViewState extends State<CardapioView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cardapio'),
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context, 'Login', (Route<dynamic> route) => false);
+        title: Row(
+          children: [
+            Expanded(child: Text('Tarefas')),
+            FutureBuilder<String>(
+              future: LoginController().usuarioLogado(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Directionality(
+                    textDirection: TextDirection.rtl,
+                    child: TextButton.icon(
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.black,
+                        textStyle: TextStyle(fontSize: 18),
+                      ),
+                      onPressed: () {
+                        LoginController().logout();
+                        Navigator.pushReplacementNamed(context, 'Login');
+                      },
+                      icon: Icon(Icons.exit_to_app, size: 20),
+                      label: Text(snapshot.data.toString()),
+                    ),
+                  );
+                }
+                return Text('');
               },
-              icon: Icon(Icons.logout))
-        ],
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

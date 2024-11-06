@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import '../controller/login_controller.dart';
 
 class ResetView extends StatefulWidget {
   const ResetView({super.key});
@@ -12,13 +13,11 @@ class ResetView extends StatefulWidget {
 class _ResetViewState extends State<ResetView> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
+  final LoginController _loginController = LoginController();
 
   var txtValor1 = TextEditingController();
-  var txtValor2 = TextEditingController();
-  var txtValor3 = TextEditingController();
-  var txtvalor4 = TextEditingController();
+
   bool val = false;
-  bool _showPassword = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +48,7 @@ class _ResetViewState extends State<ResetView> {
               Image.asset('lib/images/pizza.png'),
               SizedBox(height: 20),
               TextFormField(
-                  controller: txtValor2,
+                  controller: txtValor1,
                   decoration: InputDecoration(
                       labelText: 'Email',
                       labelStyle: TextStyle(color: Colors.redAccent),
@@ -57,14 +56,7 @@ class _ResetViewState extends State<ResetView> {
                           borderRadius: BorderRadius.circular(12)),
                       hintText: 'example@mail.com',
                       hintStyle: TextStyle(color: Colors.black38)),
-                  validator: (value) {
-                    //val = RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value);
-                    if (value != 'jose@gmail.com') {
-                      return 'Informe um email cadastrado';
-                    }else {
-                      return null;
-                    }
-                  }),
+                    ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -74,17 +66,7 @@ class _ResetViewState extends State<ResetView> {
                   textStyle: TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  if (formkey.currentState!.validate()) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                          content: Text('Email enviado com sucesso.',
-                              style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.white,
-                              ))),
-                    );
-                    Navigator.pushReplacementNamed(context, 'Login');
-                  }
+                  _loginController.esqueceuSenha(context, txtValor1.text);
                 },
                 child: Text('Redefinir Senha'),
               ),
