@@ -6,7 +6,7 @@ import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinhoservice.dart';
 
-final Cart srv = GetIt.instance<Cart>();
+final Cart cart = GetIt.instance<Cart>();
 
 class CarrinhoView extends StatefulWidget {
   const CarrinhoView({super.key});
@@ -16,7 +16,7 @@ class CarrinhoView extends StatefulWidget {
 }
 
 class _CarrinhoViewState extends State<CarrinhoView> {
-  final Cart _cart = srv;
+  final Cart _cart = cart;
 
   @override
   Widget build(BuildContext context) {

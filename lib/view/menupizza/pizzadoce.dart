@@ -1,8 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:image_network/image_network.dart';
 import '/model/menu.dart';
 import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
+import '/controller/ListarController.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final Carrinho srv = GetIt.instance<Carrinho>();
 
@@ -14,18 +18,11 @@ class Pizzadoce extends StatefulWidget {
 }
 
 class _PizzadoceState extends State<Pizzadoce> {
-  var lista = [];
-
   @override
-  void initState() {
-    lista = MenuPizzaDoce.gerarDados();
-    super.initState();
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pizza Doce'),
+        title: const Text('Pizzas Doces'),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -35,35 +32,102 @@ class _PizzadoceState extends State<Pizzadoce> {
         child: const Icon(Icons.local_grocery_store_sharp),
       ),
       body: Padding(
-        padding: EdgeInsets.all(30),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 1,
-            mainAxisExtent: 300,
-            //crossAxisSpacing: 10,
-            //mainAxisSpacing: 10,
-          ),
-          itemCount: lista.length,
-          itemBuilder: (contexto, index) {
-            return Card(
-              child: InkWell(
-                borderRadius: BorderRadius.all(Radius.circular(20)),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Image.asset(lista[index].image,
-                        width: 250, fit: BoxFit.scaleDown),
-                    Text(
-                      lista[index].nome,
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ],
+        padding: const EdgeInsets.all(10),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: ListarController().docelist(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (!snapshot.hasData || snapshot.data!.size == 0) {
+              return const Center(
+                child: Text(
+                  'Nenhuma pizza encontrada.',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
-                onTap: () {
-                  MenuPizzaDoce dados = lista[index];
-                  Navigator.pushNamed(context, 'DetalhesD', arguments: dados);
-                },
+              );
+            }
+
+            final dados = snapshot.data!;
+
+            return GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, // Duas colunas
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                childAspectRatio: 3 / 4, // Proporção altura/largura
               ),
+              itemCount: dados.size,
+              itemBuilder: (context, index) {
+                String id = dados.docs[index].id;
+                dynamic item = dados.docs[index].data();
+
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  elevation: 5,
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamed(context, 'DetalhesD',
+                          arguments: id); // Envia apenas o ID
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Expanded(
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                item['image'],
+                                fit: BoxFit.cover,
+                                width: double.infinity,
+                                loadingBuilder:
+                                    (context, child, loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                },
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.broken_image,
+                                    size: 50,
+                                    color: Colors.grey,
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            item['nome'] ?? 'Pizza sem nome',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            'R\$ ${item['valor'] != null ? item['valor'].toDouble().toStringAsFixed(2) : '0.00'}',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              color: Colors.orangeAccent,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
             );
           },
         ),

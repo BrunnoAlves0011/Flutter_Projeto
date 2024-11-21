@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../controller/login_controller.dart';
+import 'package:image_network/image_network.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -13,7 +14,6 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
-  final LoginController _loginController = LoginController();
 
   var txtValor1 = TextEditingController();
   var txtValor2 = TextEditingController();
@@ -31,7 +31,16 @@ class _LoginViewState extends State<LoginView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('lib/images/pizza.png'),
+              ImageNetwork(
+                image: 'lib/images/pizza.png',
+                height: 350,
+                width: 350,
+                curve: Curves.easeIn,
+                fitWeb: BoxFitWeb.cover,
+                onLoading:
+                    const CircularProgressIndicator(color: Colors.indigoAccent),
+                onError: const Icon(Icons.error, color: Colors.red),
+              ),
               SizedBox(height: 20),
               TextFormField(
                 controller: txtValor1,
@@ -75,7 +84,8 @@ class _LoginViewState extends State<LoginView> {
                   textStyle: TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  _loginController.login(context, txtValor1.text, txtValor2.text);
+                  LoginController()
+                      .login(context, txtValor1.text, txtValor2.text);
                 },
                 child: Text('Entrar na Conta'),
               ),

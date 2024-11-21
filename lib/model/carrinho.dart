@@ -1,5 +1,3 @@
-double valor = 0;
-double temp = 0;
 
 class Carrinho {
   final String id;

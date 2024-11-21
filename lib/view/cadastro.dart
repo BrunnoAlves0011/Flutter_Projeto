@@ -13,7 +13,6 @@ class CadastroView extends StatefulWidget {
 class _CadastroViewState extends State<CadastroView> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
-  final LoginController _loginController = LoginController();
 
   var txtValor1 = TextEditingController();
   var txtValor2 = TextEditingController();
@@ -149,7 +148,7 @@ class _CadastroViewState extends State<CadastroView> {
                   textStyle: TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  _loginController.criarConta(context, txtValor1.text, txtValor2.text, txtValor3.text);
+                  LoginController().criarConta(context, txtValor1.text, txtValor2.text, txtValor3.text);
                 },
                 child: Text('Registrar'),
               ),

@@ -34,7 +34,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(DevicePreview(
-    enabled: true,
+    enabled: false,
     builder: (context) => const MainApp(),
   ));
 }
@@ -57,7 +57,7 @@ class MainApp extends StatelessWidget {
           'DetalhesB': (context) => DetalhesBView(),
           'PizzaSal': (context) => Pizzasal(),
           'PizzaDoce': (context) => Pizzadoce(),
-          'Bebida': (context) => Bebida(),
+          'Bebida': (context) => Bebida1(),
           'Carrinho': (context) => CarrinhoView(),
         });
   }

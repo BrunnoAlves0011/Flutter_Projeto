@@ -13,7 +13,6 @@ class ResetView extends StatefulWidget {
 class _ResetViewState extends State<ResetView> {
   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final messagerKey = GlobalKey<ScaffoldMessengerState>();
-  final LoginController _loginController = LoginController();
 
   var txtValor1 = TextEditingController();
 
@@ -66,7 +65,7 @@ class _ResetViewState extends State<ResetView> {
                   textStyle: TextStyle(fontSize: 16),
                 ),
                 onPressed: () {
-                  _loginController.esqueceuSenha(context, txtValor1.text);
+                  LoginController().esqueceuSenha(context, txtValor1.text);
                 },
                 child: Text('Redefinir Senha'),
               ),
