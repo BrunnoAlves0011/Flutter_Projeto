@@ -44,18 +44,18 @@ class _ResetViewState extends State<ResetView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('lib/images/pizza.png'),
+              Image.asset('lib/images/pizza.png',width: 300, height: 300),
               SizedBox(height: 20),
               TextFormField(
-                  controller: txtValor1,
-                  decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(color: Colors.redAccent),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(12)),
-                      hintText: 'example@mail.com',
-                      hintStyle: TextStyle(color: Colors.black38)),
-                    ),
+                controller: txtValor1,
+                decoration: InputDecoration(
+                    labelText: 'Email',
+                    labelStyle: TextStyle(color: Colors.redAccent),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    hintText: 'example@mail.com',
+                    hintStyle: TextStyle(color: Colors.black38)),
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(

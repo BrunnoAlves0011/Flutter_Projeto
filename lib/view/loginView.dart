@@ -31,16 +31,7 @@ class _LoginViewState extends State<LoginView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              ImageNetwork(
-                image: 'lib/images/pizza.png',
-                height: 350,
-                width: 350,
-                curve: Curves.easeIn,
-                fitWeb: BoxFitWeb.cover,
-                onLoading:
-                    const CircularProgressIndicator(color: Colors.indigoAccent),
-                onError: const Icon(Icons.error, color: Colors.red),
-              ),
+            Image.asset('lib/images/pizza.png',width: 300, height: 300),
               SizedBox(height: 20),
               TextFormField(
                 controller: txtValor1,

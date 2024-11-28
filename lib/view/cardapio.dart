@@ -79,8 +79,11 @@ class _CardapioViewState extends State<CardapioView> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Image.asset(lista[index].image,
-                        width: 300, fit: BoxFit.fill),
+                    Image.asset(
+                      lista[index].image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
                     Text(
                       lista[index].nome,
                       style: TextStyle(fontSize: 18),

@@ -75,24 +75,10 @@ class _PizzasalState extends State<Pizzasal> {
                           Expanded(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
+                              child: Image.asset(
                                 item['image'],
                                 fit: BoxFit.cover,
                                 width: double.infinity,
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
-                                    Icons.broken_image,
-                                    size: 50,
-                                    color: Colors.grey,
-                                  );
-                                },
                               ),
                             ),
                           ),

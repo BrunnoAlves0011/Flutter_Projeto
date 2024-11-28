@@ -4,6 +4,7 @@ import 'package:get_it/get_it.dart';
 import '/model/carrinho.dart';
 import '/model/carrinhoservice.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '/model/mensagem.dart';
 
 final Cart srv = GetIt.instance<Cart>();
 
@@ -141,20 +142,17 @@ class _DetalhesSViewState extends State<DetalhesSView> {
                       backgroundColor: Colors.orangeAccent,
                     ),
                     onPressed: () {
+                      // Adiciona o item ao carrinho
                       srv.addItem(
                         Carrinho(
                           id: itemId,
                           image: dados['image'] ?? '',
-                          pizza: dados['nome'] ?? 'Sem nome',
+                          pizza: dados['nome'] ?? '',
                           valor: dados['valor'] ?? 0,
                         ),
                       );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: const Text('Adicionado ao carrinho!'),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
+                      // Notifica o usuário
+                      adicionado(context, 'Item adicionado ao carrinho');
                     },
                     icon: const Icon(Icons.add_shopping_cart, size: 24),
                     label: const Text(

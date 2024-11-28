@@ -16,7 +16,7 @@ class Bebida1 extends StatefulWidget {
 }
 
 class _Bebida1State extends State<Bebida1> {
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -81,24 +81,10 @@ class _Bebida1State extends State<Bebida1> {
                           Expanded(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(10),
-                              child: Image.network(
+                              child: Image.asset(
                                 item['image'],
                                 fit: BoxFit.cover,
                                 width: double.infinity,
-                                loadingBuilder:
-                                    (context, child, loadingProgress) {
-                                  if (loadingProgress == null) return child;
-                                  return const Center(
-                                    child: CircularProgressIndicator(),
-                                  );
-                                },
-                                errorBuilder: (context, error, stackTrace) {
-                                  return const Icon(
-                                    Icons.broken_image,
-                                    size: 50,
-                                    color: Colors.grey,
-                                  );
-                                },
                               ),
                             ),
                           ),

@@ -47,7 +47,7 @@ class _CadastroViewState extends State<CadastroView> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset('lib/images/pizza.png'),
+              Image.asset('lib/images/pizza.png',width: 300, height: 300),
               TextFormField(
                   controller: txtValor1,
                   decoration: InputDecoration(

@@ -30,6 +30,7 @@ import 'view/carrinhoView.dart';
 final getIt = GetIt.instance;
 
 Future<void> main() async {
+  getIt.registerLazySingleton<Cart>(() => Cart());
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -48,17 +49,17 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: 'Login',
         routes: {
-          'Login': (context) => LoginView(),
-          'Cadastro': (context) => CadastroView(),
-          'Reset': (context) => ResetView(),
-          'Cardapio': (context) => CardapioView(),
+          'Login':     (context) => LoginView(),
+          'Cadastro':  (context) => CadastroView(),
+          'Reset':     (context) => ResetView(),
+          'Cardapio':  (context) => CardapioView(),
           'DetalhesS': (context) => DetalhesSView(),
           'DetalhesD': (context) => DetalhesDView(),
           'DetalhesB': (context) => DetalhesBView(),
-          'PizzaSal': (context) => Pizzasal(),
+          'PizzaSal':  (context) => Pizzasal(),
           'PizzaDoce': (context) => Pizzadoce(),
-          'Bebida': (context) => Bebida1(),
-          'Carrinho': (context) => CarrinhoView(),
+          'Bebida':    (context) => Bebida1(),
+          'Carrinho':  (context) => CarrinhoView(),
         });
   }
 }
